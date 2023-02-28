@@ -1,3 +1,6 @@
+<?php
+include 'prosesregister.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +13,20 @@
     <center>
     <h1>Daftar Masyarakat</h1>
     <form action="" method="post">
-    <label for="nik">NIK</label>
+    NIK :<br>
     <input type="text" name="nik" id=""><br>
-    <label for="nama">Nama</label>
-    <input type="text" name="nama" id="">
+    Nama :<br>
+    <input type="text" name="nama" id=""><br>
+    Username :<br>
+    <input type="text" name="username"><br>
+    Password : <br>
+    <input type="password" name="password"><br>
+    No. Telepon : <br>
+    <input type="text" name="telp"><br><br>
+    <input type="submit" name="register" value="Daftar">
     </form>
+    <br>
+    <a href="index.php"><button>Kembali</button></a>
     </center>
 </body>
 </html>
