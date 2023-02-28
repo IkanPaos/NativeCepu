@@ -1,1 +1,39 @@
-halamancrud
+ <?php
+include_once ("koneksi.php");
+
+$result = mysqli_query($koneksi, "SELECT * FROM pengaduan order by tgl_pengaduan desc");
+ ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+ </head>
+ <body>
+    <center>
+        <h1>Daftar Laporan</h1>
+        <table width="80%" border=1>
+            <tr>
+                <th>No</th>
+                <th>NIK</th>
+                <th>Tanggal</th>
+                <th>Laporan</th>
+                <th>Aksi</th>
+            </tr>
+            <?php
+            $no = 1;
+            while ($user_data = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td align='center'>" . $no++ . "</td>";
+                echo "<td>" . $user_data['nik'] . "</td>";
+                echo "<td>" . $user_data['tgl_pengaduan'] . "</td>";
+                echo "<td>" . $user_data['isi_laporan'] . "</td>";
+                echo "<td align='center'><a href='edit.php?id=$user_data[id_pengaduan]'>Edit</a> | <a href='show.php?=$user_data[id_pengaduan]'>Cek</a> | <a href='delete.php?=$user_data[id_pengaduan]'>Hapus</a>";
+            }
+            ?>
+        </table>
+    </center>
+ </body>
+ </html>
