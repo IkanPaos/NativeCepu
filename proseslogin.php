@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $login = mysqli_query($koneksi, "SELECT * FROM masyarakat where username='$username'");
+    $login = mysqli_query($koneksi, "SELECT * FROM masyarakat WHERE username='$username'");
     $cek = mysqli_num_rows($login);
 
     if ($cek > 0) {
@@ -35,8 +35,11 @@ if (isset($_POST['login'])) {
                 $_SESSION['username'] = $data['username'];
                 $_SESSION['name'] = $data['nama_petugas'];
                 $_SESSION['level'] = $data['level'];
-
-                header("location:petugas.php");
+                if ($data['level']=="admin"){
+                    header("location: admin.php");
+                } else {
+                    header("location:petugas.php");
+                }
             } else {
                 $_SESSION['login_error'] = "Data tidak Ditemukan";
                 header("location: index.php");
