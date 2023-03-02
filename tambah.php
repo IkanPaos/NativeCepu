@@ -7,7 +7,7 @@
     <title>Laporkan</title>
 </head>
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="tambah.php" method="post" enctype="multipart/form-data">
         <table width="25%" border="0">
             <tr>
                 <td>Tanggal</td>
@@ -30,7 +30,7 @@
         <input type="submit" name="Submit" value="Laporkan">
     </form>
     <?php
-if (isset($_GET['ber'])) {
+if (isset($_GET['berhasil'])) {
     echo "Berhasil melaporkan <a href='indexcrud.php'>Laporan</a>";
 }
 if (isset($_POST['Submit'])) {
@@ -38,7 +38,7 @@ if (isset($_POST['Submit'])) {
     $laporan = $_POST['laporan'];
     $foto = $_FILES['foto']['name'];
     $tmp = $_FILES['foto']['tmp_name'];
-    $status = 0;
+    $status = "belum dilihat";
     
     $img = date('dmYHis').$foto;
     $path = "gambar/".$img;
@@ -49,7 +49,7 @@ if (isset($_POST['Submit'])) {
         $result = mysqli_query($koneksi,"INSERT INTO pengaduan (tgl_pengaduan, nik, isi_laporan, foto, status) VALUES (CURRENT_DATE(), '$nik', '$laporan', '$img', '$status')");
 
         
-        header("location:tambah.php?ber");
+        header("location:tambah.php?berhasil");
     }
 }
     ?>
