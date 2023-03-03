@@ -46,7 +46,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM pengaduan order by tgl_pengaduan
                 echo "<td>" . $user_data['tgl_pengaduan'] . "</td>";
                 echo "<td>" . $user_data['isi_laporan'] . "</td>";
                 echo "<td align='center'>" . $user_data['status'] . "</td>";
-                echo "<td align='center'><a href='edit.php?=$user_data[id_pengaduan]'>Edit</a> | <a href='show.php?=$user_data[id_pengaduan]'>Cek</a> | <a href='delete.php?id_pengaduan=$user_data[id_pengaduan]'>Hapus</a>";
+                echo "<td align='center'><a href='edit.php?id_pengaduan=$user_data[id_pengaduan]'>Edit</a> | <a href='show.php?id_pengaduan=$user_data[id_pengaduan]'>Cek</a> | <a href='delete.php?id_pengaduan=$user_data[id_pengaduan]'>Hapus</a>";
             }
             ?>
         </table>

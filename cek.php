@@ -51,16 +51,15 @@ if (isset($_POST['Update'])) {
 </head>
 <body>
     <h1>Ubah Laporan</h1>
-    <a href="indexcrud.php">Kembali</a><br><br>
+    <a href="petugas.php">Kembali</a><br><br>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <label for="nik">NIK</label>
         <input type="text" name="nik" value="<?= $nik; ?>" id="" disabled><br>
         <label for="laporan">Laporan</label><br>
-        <textarea name="isi_laporan" id="" cols="30" rows="10"><?= $laporan; ?></textarea><br>
+        <textarea name="isi_laporan" id="" cols="30" rows="10" disabled><?= $laporan; ?></textarea><br>
         <label for="foto">Foto</label><br>
         <img src="gambar/<?= $foto; ?>" width="100"/><br><br>
-        <input type="file" name="foto"><br><br>
         <input type="submit" name="Update" value="Update">
     </form>
 </body>
