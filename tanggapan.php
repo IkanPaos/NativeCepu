@@ -27,9 +27,14 @@ if (isset($_POST['Tanggapi'])) {
 if (isset($_POST['Update'])) {
     $id = $_GET['id_pengaduan'];
     $status = "proses";
-
     $result = mysqli_query($koneksi, "UPDATE pengaduan SET status='$status' WHERE id_pengaduan=$id");
     
+}
+
+if (isset($_POST['selesai'])) {
+    $id = $_GET['id_pengaduan'];
+    $status = "selesai";
+    $result = mysqli_query($koneksi, "UPDATE pengaduan SET status='$status' WHERE id_pengaduan=$id");
 }
 ?>
 <?php
@@ -56,7 +61,7 @@ while ($data = mysqli_fetch_array($result)) {
 </head>
 <body>
     <h1>Keterangan</h1>
-    <a href="petugas.php">Kembali</a><br><br>
+    <a href="petugas.php"><button>Kembali</button></a><br><br>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $id; ?>">
         <label for="nik">NIK</label>
@@ -67,7 +72,7 @@ while ($data = mysqli_fetch_array($result)) {
         <img src="gambar/<?= $foto; ?>" width="100"/><br><br>
         <label for="tanggapan">Tanggapan</label><br>
         <textarea name="tanggapan" id="" cols="30" rows="10"></textarea><br>
-        <input type="submit" name="Tanggapi" value="Tanggapi"> <input type="submit" name="Update" value="Proses">
+        <input type="submit" name="Tanggapi" value="Tanggapi"> <input type="submit" name="Update" value="Proses"> <input type="submit" name="selesai" value="Selesai">
     </form>
 </body>
 </html>

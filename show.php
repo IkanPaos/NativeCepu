@@ -14,10 +14,13 @@ while ($data = mysqli_fetch_array($result))
 <?php
 $id = $_GET['id_pengaduan'];
 $result = mysqli_query($koneksi,"SELECT * FROM tanggapan WHERE id_pengaduan='$id'");
-
-while ($data = mysqli_fetch_array($result)){
+$data = mysqli_fetch_array($result);
+if ($data) {
     $tanggapan = $data['tanggapan'];
+} else {
+    $tanggapan = "Belum ada Tanggapan";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
