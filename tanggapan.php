@@ -8,9 +8,19 @@ if (isset($_POST['Tanggapi'])) {
     $tanggapan = $_POST['tanggapan'];
     $id_petugas = $_SESSION['user_id'];
 
-    $result = mysqli_query($koneksi, "INSERT INTO tanggapan(id_tanggapan,id_pengaduan,tgl_tanggapan,tanggapan,id_petugas) VALUES (null,'$id_pengaduan','$tgl_tanggapan','$tanggapan','$id_petugas')");
-    if ($result) {
-        echo "Berhasil Mengirim Tanggapan";
+    $result = mysqli_query($koneksi, "SELECT * FROM tanggapan WHERE id_pengaduan='$id_pengaduan'");
+    $data = mysqli_fetch_array($result);
+    if ($data) {
+        $id_tanggapan = $data['id_tanggapan'];
+        $result = mysqli_query($koneksi,"UPDATE tanggapan SET tgl_tanggapan='$tgl_tanggapan', tanggapan='$tanggapan', id_petugas='$id_petugas' WHERE id_tanggapan=$id_tanggapan");
+        if ($result) {
+            echo "Berhasil Mengirim Tanggapan";
+        }
+    } else {
+        $result = mysqli_query($koneksi,"INSERT INTO tanggapan(id_tanggapan,id_pengaduan,tgl_tanggapan,tanggapan,id_petugas) VALUES (null,'$id_pengaduan','$tgl_tanggapan','$tanggapan','$id_petugas')");
+        if ($result) {
+            echo "Berhasil Mengirim Tanggapan";
+        }
     }
 }
 
