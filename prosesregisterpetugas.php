@@ -9,7 +9,7 @@ if (isset($_POST['register'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $telp = $_POST['telp'];
 
-    $query = mysqli_query($koneksi,"INSERT INTO petugas (id_petugas,nama_petugas,username,password,telp) VALUES (null,'$name','$username','$password','$telp')");
+    $query = mysqli_query($koneksi,"INSERT INTO petugas (id_petugas,nama_petugas,username,password,telp,level) VALUES (null,'$name','$username','$password','$telp','petugas')");
     
     if ($query) {
         $_SESSION['success'] = "Registrasi Berhasi";

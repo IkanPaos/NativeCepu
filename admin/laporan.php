@@ -1,0 +1,56 @@
+<?php
+include_once ("../koneksi.php");
+
+$result = mysqli_query($koneksi, "SELECT * FROM pengaduan order by tgl_pengaduan desc");
+ ?>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        div.kanan {
+            position: relative;
+            left: 483px;
+        }
+        @media print{
+            button#print-button{
+                display: none;
+            }
+        }
+    </style>
+ </head>
+ <body>
+     <center>
+         <h1>Daftar Laporan</h1>
+         <div class="kanan">
+             <button id="print-button" onclick="window.print()">Print</button>
+            <a href="../admin.php"><button id="print-button">Kembali</button></a>
+         </div>
+        <br>
+        <table width="80%" border=1>
+            <tr>
+                <th>No</th>
+                <th>NIK</th>
+                <th>Tanggal</th>
+                <th>Laporan</th>
+                <th>Status</th>
+            </tr>
+            <?php
+            $no = 1;
+            while ($user_data = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td align='center'>" . $no++ . "</td>";
+                echo "<td>" . $user_data['nik'] . "</td>";
+                echo "<td>" . $user_data['tgl_pengaduan'] . "</td>";
+                echo "<td>" . $user_data['isi_laporan'] . "</td>";
+                echo "<td align='center'>" . $user_data['status'] . "</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </center>
+ </body>
+ </html>

@@ -21,7 +21,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM masyarakat order by nik desc");
      <center>
          <h1>Daftar Masyarakat</h1>
          <div class="kanan">
-             <a href="petugas.php"><button>Kembali</button></a>
+            <a href="petugas.php"><button>Kembali</button></a>
          </div>
         <br>
         <table width="80%" border=1>

@@ -13,7 +13,12 @@ $result = mysqli_query($koneksi, "SELECT * FROM masyarakat order by nik asc");
     <style>
         div.kanan {
             position: relative;
-            left: 500px;
+            left: 483px;
+        }
+        @media print{
+            button#print-button{
+                display: none;
+            }
         }
     </style>
  </head>
@@ -21,7 +26,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM masyarakat order by nik asc");
      <center>
          <h1>Daftar Masyarakat</h1>
          <div class="kanan">
-             <a href="../admin.php"><button>Kembali</button></a>
+            <button id="print-button" onclick="window.print()">Print</button>
+            <a href="../admin.php"><button id="print-button">Kembali</button></a>
          </div>
         <br>
         <table width="80%" border=1>
