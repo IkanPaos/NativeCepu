@@ -1,6 +1,9 @@
 <?php
 include_once ("../koneksi.php");
-
+session_start();
+if ($_SESSION['level'] != "admin") {
+    header("location:index.php");
+}
 $result = mysqli_query($koneksi, "SELECT * FROM petugas WHERE level='petugas' order by id_petugas asc");
  ?>
  <!DOCTYPE html>

@@ -1,8 +1,7 @@
  <?php
 include_once ("koneksi.php");
-
 $result = mysqli_query($koneksi, "SELECT * FROM pengaduan order by tgl_pengaduan desc");
- ?>
+?>
  <!DOCTYPE html>
  <html lang="en">
  <head>

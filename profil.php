@@ -1,7 +1,9 @@
 <?php
 session_start();
 include_once("koneksi.php");
-
+if ($_SESSION['level'] != "petugas") {
+    header("location:index.php");
+}
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();

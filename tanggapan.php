@@ -1,7 +1,9 @@
 <?php
 session_start();
 include_once("koneksi.php");
-
+if ($_SESSION['level'] != "petugas") {
+    header("location:index.php");
+}
 if (isset($_POST['Tanggapi'])) {
     $id_pengaduan = $_GET['id_pengaduan'];
     $tgl_tanggapan = date('Y-m-d');

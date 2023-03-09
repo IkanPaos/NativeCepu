@@ -1,6 +1,9 @@
 <?php
 include_once ("koneksi.php");
-
+session_start();
+if ($_SESSION['level'] != "petugas") {
+    header("location:index.php");
+}
 $result = mysqli_query($koneksi, "SELECT * FROM masyarakat order by nik desc");
  ?>
  <!DOCTYPE html>

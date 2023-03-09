@@ -1,5 +1,9 @@
 <?php
 include 'prosesregisterpetugas.php';
+session_start();
+if ($_SESSION['level'] != "admin") {
+    header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

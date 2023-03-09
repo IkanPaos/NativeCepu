@@ -7,12 +7,13 @@ if (isset($_POST['Update'])) {
     $foto = $_FILES['foto']['name'];
     $tmp = $_FILES['foto']['tmp_name'];
     $oldfoto = $_POST['oldfoto'];
-
     if (!empty($foto)) {
         $img = date('dmYHis').$foto;
         $path = "gambar/".$img;
         move_uploaded_file($tmp,$path);
-        unlink("gambar/".$oldfoto);
+        if (!empty($oldfoto)) {
+            unlink("gambar/".$oldfoto);
+        }
     } else {
         $img = $oldfoto;
         $path = "gambar/".$img;
@@ -39,6 +40,8 @@ if (isset($_POST['Update'])) {
     $nik = $data['nik'];
     $laporan = $data['isi_laporan'];
     $foto = $data['foto'];
+    $oldfoto = $foto;
+    $status = $data['status'];
     }
 ?>
 <!DOCTYPE html>
@@ -53,15 +56,22 @@ if (isset($_POST['Update'])) {
     <h1>Ubah Laporan</h1>
     <a href="indexcrud.php">Kembali</a><br><br>
     <form action="" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $id; ?>">
+        <input type="hidden" name="id_pengaduan" value="<?= $id; ?>">
         <label for="nik">NIK</label>
         <input type="text" name="nik" value="<?= $nik; ?>" id="" disabled><br>
         <label for="laporan">Laporan</label><br>
         <textarea name="isi_laporan" id="" cols="30" rows="10"><?= $laporan; ?></textarea><br>
         <label for="foto">Foto</label><br>
-        <img src="gambar/<?= $foto; ?>" width="100"/><br><br>
+        <img src="gambar/<?= (!empty($foto) ? $foto : $oldfoto); ?>" width="100"/><br><br>
         <input type="file" name="foto"><br><br>
-        <input type="submit" name="Update" value="Update">
+        <input type="hidden" name="oldfoto" value="<?= $foto; ?>">
+        <?php
+            if ($status == "diproses" || $status == "selesai") {
+                echo "<button disabled>Update</button> Laporan Sudah ".$status;
+            } else {
+                echo "<input type='submit' name='Update' value='Update'>";
+            }
+        ?>
     </form>
 </body>
 </html>
